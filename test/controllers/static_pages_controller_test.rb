@@ -2,7 +2,8 @@ require "test_helper"
 
 class StaticPagesControllerTest < ActionDispatch::IntegrationTest
   test "should get home" do
-    get static_pages_home_url
+    # get static_pages_home_url - уже нет такого пути, см. routs
+    get root_url
     assert_response :success
     assert_select "title", "Home | Ruby on Rails Tutorial Sample App"
   end
