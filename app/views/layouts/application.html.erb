@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>SampleApp</title>
+    <title><%= yield(:title) %> | Ruby on Rails Tutorial Sample App</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+    <%= csrf_meta_tags %> <!-- метод предотвращает подделку межсайтовых запросов (CSRF), одного из видов вредоносных веб-атак.-->
+    <%= csp_meta_tag %> 
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %> <!-- подключение стилей -->
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>               <!-- подключение сценариев JavaScript-приложения-->
   </head>
 
   <body>
+  <h1> yield </h1>
     <%= yield %>
+     <!-- при посещении какой-либо страницы использование этого макета обеспечивает 
+     преобразование содержимого 'страница'.html.erb в разметку HTML и вставку ее на мес­то <%= yield %>
+     !!!!!!!!!-->
+      <h2> yield2 </h2>
   </body>
 </html>
