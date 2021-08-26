@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= yield(:title) %> | Ruby on Rails Tutorial Sample App</title>
+    <title><%= full_title(yield(:title)) %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %> <!-- метод предотвращает подделку межсайтовых запросов (CSRF), одного из видов вредоносных веб-атак.-->
     <%= csp_meta_tag %> 
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %> <!-- подключение стилей -->
+    <!--в ней заключено не менее четырех идей, которые могут сбить с толку: встроенные Rails-методы, вызов метода без скобок, символы и хэши-->
+    <!-- 1. скобки опущены, можно было stylesheet_link_tag ('application', media: 'all', 'data-turbolinks-track': 'reload')  -->
+    <!-- 2.  media: 'all' - это хэш, Когда хэш является ПОСЛЕДНИМ аргументом в вызове функции, фигурные скобки можно опустить
+            можно было: stylesheet_link_tag 'application', { media: 'all', 'data-turbolinks-track': 'reload' }    -->
+    <!-- 3. в качестве ключа, видимо, используется строка 'data-turbolinks-track': 'reload' -->
+
+
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>               <!-- подключение сценариев JavaScript-приложения-->
   </head>
 
