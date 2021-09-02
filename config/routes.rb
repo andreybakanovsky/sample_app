@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get '/contact', to: 'static_pages#contact'
   get '/map',      to: 'static_pages#map'
   get '/signup',  to: 'users#new'
+  resources :users
   # root 'application#hello' # controller/action
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
