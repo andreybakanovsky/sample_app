@@ -3,8 +3,8 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <%= form_with(model: @user, local: true) do |form| %>
-        <%= render 'shared/error_messages' %> <!-- Отображение сообщений об ошибках в форме регистрации -->
-                                              <!-- + добавив CSS-класс form-control (имеющий особое значение в Bootstrap) к каждому полю записи -->
+        <%= render 'shared/error_messages' %> 
+      
       <%= form.label :name %>
       <%= form.text_field :name, class: 'form-control' %>
 
