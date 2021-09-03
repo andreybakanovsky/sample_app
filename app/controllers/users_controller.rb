@@ -9,8 +9,8 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)   # Not the final implementation!
-    # is mostly equivalent to:
-    # @user = User.new(name: "Foo Bar", email: "foo@invalid", password: "foo", password_confirmation: "bar")
+    # params[:user] на самом деле является хэшем атрибутов пользователя
+    # is mostly equivalent to: @user = User.new(name: "Foo Bar", email: "foo@invalid", password: "foo", password_confirmation: "bar")
     if @user.save
       flash[:success] = "Welcome to the Sample App!"
       redirect_to @user # можно было так же redirect_to user_url(@user)
