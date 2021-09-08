@@ -16,9 +16,10 @@ class UsersController < ApplicationController
     # params[:user] на самом деле является хэшем атрибутов пользователя
     # is mostly equivalent to: @user = User.new(name: "Foo Bar", email: "foo@invalid", password: "foo", password_confirmation: "bar")
     if @user.save
+      log_in @user
       flash[:success] = "Welcome to the Sample App!"
       redirect_to @user # можно было так же redirect_to user_url(@user)
-      # Такое возможно, потому что Rails автоматически определяет, что перенаправление
+      # Так3ое возможно, потому что Rails автоматически определяет, что перенаправление
       # redirect_to @user должно быть выполнено в user_url(@user).
     else
       render 'new'
