@@ -1,6 +1,9 @@
 module SessionsHelper
   # Logs in the given user.
   def log_in(user)
+    # Эта инструкция передаст браузеру пользователя cookie с зашифрованной вер-
+    # сией идентификатора пользователя, что позволит получить его на следующей
+    # странице через session[:user_id]
     session[:user_id] = user.id
   end
 
