@@ -3,9 +3,10 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by(email: params[:session][:email].downcase)
-    if user && user.authenticate(params[:session][:password])
+    if user && user.authenticate(params[:session][:password]) # см. описание authenticate ниже
       # log in and redirect to the user's show page
-      log_in(user) # Метод log_in доступен в контроллере Sessions благодаря подключению модуля в листинге 8.11.      
+      log_in(user) # Метод log_in доступен в контроллере Sessions благодаря подключению модуля в листинге 8.11.
+      params[:session][:remember_me] == '1' ? remember(user) : forget(user)
       redirect_to(user) #or user_url(user),or redirect_to user
     else
       # Create an error message
@@ -14,8 +15,11 @@ class SessionsController < ApplicationController
     end
   end
 
+  # authenticate - принимает пароль и, после сравнения хэша расчетного и находящегося в базе данных,
+  # возвращиет модель пользователя или false
+
   def destroy
-  log_out
+  log_out if logged_in?
   redirect_to root_url
   end
 end
