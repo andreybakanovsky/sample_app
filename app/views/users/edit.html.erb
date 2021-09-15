@@ -1,0 +1,31 @@
+<% provide(:title, 'Edit user') %>
+<h1>Update you profile</h1>
+<!--Конструируя форму с помощью form_for(@user), Rails использует POST, если @user.new_record? возвращает true, и PATCH, если возвращает false
+When constructing a form using form_with(@user) , Rails uses POST if @user.new_record? is true and PATCH if it is false . -->
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_with(model: @user, local: true) do |form| %>
+        <%= render 'shared/error_messages' %> 
+      
+      <%= form.label :name %>
+      <%= form.text_field :name, class: 'form-control' %>
+
+      <%= form.label :email %>
+      <%= form.email_field :email, class: 'form-control'  %>
+
+      <%= form.label :password %>
+      <%= form.password_field :password, class: 'form-control'  %>
+
+      <%= form.label :password_confirmation, "Confirmation" %>
+      <%= form.password_field :password_confirmation, class: 'form-control'  %>
+
+      <%= form.submit "Save changes", class: "btn btn-primary" %>
+
+        <div class="gravatar_edit">
+        <%= gravatar_for @user %>
+        <a href="https://gravatar.com/emails" target="_blank">change</a>
+        </div>
+
+     <% end %>
+  </div>
+</div>
