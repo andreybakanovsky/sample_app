@@ -21,16 +21,16 @@ class User < ApplicationRecord
   end
 
   # Returns a random token.
-  def self.new_token
+  def self.new_token # метод класса
     SecureRandom.urlsafe_base64
     # при получении cookie с постоянным идентификатором необходимо найти
     # пользователя в базе данных и убедиться, что токен в cookie совпадает со свя-
     # занным дайджестом в базе данных
   end
 
-  # Запоминает пользователя в базе данных для использования в постоянных сеансах.
+  # Запоминает пользователя в БАЗЕ ДАННЫХ для использования в постоянных сеансах.
   def remember
-    self.remember_token = User.new_token #  гарантирует, что присваивание будет выполнено пользовательскому атрибуту
+    self.remember_token = User.new_token # self гарантирует, что присваивание будет выполнено пользовательскому атрибуту
     update_attribute(:remember_digest, User.digest(remember_token))
   end
 
