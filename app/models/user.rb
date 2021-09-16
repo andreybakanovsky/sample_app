@@ -21,7 +21,8 @@ class User < ApplicationRecord
   end
 
   # Returns a random token.
-  def self.new_token # метод класса
+  # метод класса
+  def self.new_token
     SecureRandom.urlsafe_base64
     # при получении cookie с постоянным идентификатором необходимо найти
     # пользователя в базе данных и убедиться, что токен в cookie совпадает со свя-
@@ -38,6 +39,7 @@ class User < ApplicationRecord
   # Возвращает true, если указанный токен соответствует дайджесту.
   def authenticated?(remember_token)
     return false if remember_digest.nil?
+
     BCrypt::Password.new(remember_digest).is_password?(remember_token)
   end
 

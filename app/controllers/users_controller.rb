@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :logged_in_user, only: %i[edit update] # чтобы без аутентификации не могли ничего изменить ))
   # def index
   #   @users = User.all
   # end
@@ -46,5 +47,13 @@ class UsersController < ApplicationController
     # !!! This code returns a version of the params hash with only the permitted attributes (while raising
     # an error if the :user attribute is missing).
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
+  end
+
+  # Подтверждает вход пользователя.
+  def logged_in_user
+    unless logged_in?
+      flash[:danger] = 'Please log in.'
+      redirect_to login_url
+    end
   end
 end
