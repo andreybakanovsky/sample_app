@@ -7,18 +7,19 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # Create a main sample user.
-User.create!(name: 'Example User',
-             email: 'example@mail.org',
-             password: 'foobar',
-             password_confirmation: 'foobar')
+User.create!(name: 'Andrey',
+             email: 'andrey@mail.com',
+             password: '1234567',
+             password_confirmation: '1234567',
+             admin: true)
+
 # Generate a bunch of additional users.
 99.times do |n|
   name = Faker::Name.name
   email = "example-#{n + 1}@mail.org"
-  password = 'password'
+  password = '1234567'
   User.create!(name: name,
                email: email,
-               password:
-  password,
+               password:  password,
                password_confirmation: password)
 end
