@@ -39,7 +39,7 @@ module SessionsHelper
       @current_user ||= User.find_by(id: user_id) # определяем текущего пользователя
     elsif (user_id = cookies.encrypted[:user_id]) # Если существует расшифрованное id пользователя в куках (при этом присвоим его переменной user_id)
       user = User.find_by(id: user_id) # находим пользователя по его идентификатору в базе данных
-      if user && user.authenticated?(cookies[:remember_token]) # если найден и его токен в куках соответствует токену в базе данных
+      if user && user.authenticated?(:remember, cookies[:remember_token]) # если найден и его токен в куках соответствует токену в базе данных
         log_in user # выполняем вход
         @current_user = user # определяем текущего юзера как юзера с которым мы работали
       end
