@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
   resources :users
   resources :account_activations, only: [:edit]
-
+  resources :password_resets, only: [:edit, :create, :new, :update]
   # root 'application#hello' # controller/action
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
