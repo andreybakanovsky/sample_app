@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   attr_accessor :remember_token, :activation_token, :reset_token
-
+  has_many :microposts, dependent: :destroy # при удалении учетной записи следует удалить и все микросообщения соответствующего пользователя
   before_save :downcase_email   #  обычно предпочтительнее использовать ссылки на методы, а не явный блок
   before_create :create_activation_digest
 
