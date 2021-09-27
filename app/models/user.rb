@@ -1,7 +1,8 @@
 class User < ApplicationRecord
   attr_accessor :remember_token, :activation_token, :reset_token
+
   has_many :microposts, dependent: :destroy # при удалении учетной записи следует удалить и все микросообщения соответствующего пользователя
-  before_save :downcase_email   #  обычно предпочтительнее использовать ссылки на методы, а не явный блок
+  before_save :downcase_email #  обычно предпочтительнее использовать ссылки на методы, а не явный блок
   before_create :create_activation_digest
 
   validates(:name, presence: true, length: { maximum: 50 })
@@ -80,6 +81,12 @@ class User < ApplicationRecord
   # Возвращает true, если время для сброса пароля истекло
   def password_reset_expired?
     reset_sent_at < 2.hours.ago
+  end
+
+  # Определяет прото-ленту.
+  # Полная реализация приводится в разделе "Следование за пользователями".
+  def feed
+    Micropost.where('user_id = ?', id) # выбираем посты соответствующие конкретному пользователю - для отображение в home
   end
 
   private
