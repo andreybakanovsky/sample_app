@@ -7,11 +7,11 @@ class User < ApplicationRecord
                                   dependent: :destroy # удаление учетной записи пользователя должно так же удалить все его взаимоотношения
   has_many :following, through: :active_relationships, source: :followed
 
-  has_many :passive_relationships, class_name: "Relationship", 
-                                   foreign_key: "followed_id",
+  has_many :passive_relationships, class_name: 'Relationship',
+                                   foreign_key: 'followed_id',
                                    dependent: :destroy
   has_many :followers, through: :passive_relationships, source: :follower
-  
+
   before_save :downcase_email #  обычно предпочтительнее использовать ссылки на методы, а не явный блок
   before_create :create_activation_digest
 
@@ -96,7 +96,12 @@ class User < ApplicationRecord
   # Определяет прото-ленту.
   # Полная реализация приводится в разделе "Следование за пользователями".
   def feed
-    Micropost.where('user_id = ?', id) # выбираем посты соответствующие конкретному пользователю - для отображение в home
+    # Micropost.where('user_id = ?', id) # выбираем посты соответствующие конкретному пользователю - для отображение в home
+    # Micropost.where("user_id IN (?) OR user_id = ?", following_ids, id) # в последней главе
+    # и далее с помощью подзапроса subselects: 
+    following_ids = 'SELECT followed_id FROM relationships WHERE follower_id = :user_id'
+    Micropost.where("user_id IN (#{following_ids})OR user_id = :user_id", user_id: id)
+    # в результате достаточно лишь присоединить _ids к имени связи, и мы получим идентификаторы, соответствующие коллекции user.following
   end
 
   # Follows a user.
