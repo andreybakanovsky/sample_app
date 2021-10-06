@@ -69,7 +69,7 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true # ??? tests?
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
-  host = 'afternoon-plains-47666.herokuapp.com'
+  host = 'https://afternoon-plains-47666.herokuapp.com'
   config.action_mailer.default_url_options = { host: host }
   ActionMailer::Base.smtp_settings = {
     :address           => 'smtp.mailgun.org',
@@ -77,7 +77,7 @@ Rails.application.configure do
     :authentication    => :plain,
     :user_name         => ENV['MAILGUN_SMTP_LOGIN'],
     :password          => ENV['MAILGUN_SMTP_PASSWORD'],
-    :domain            => 'afternoon-plains-47666.herokuapp.com',
+    :domain            => 'https://afternoon-plains-47666.herokuapp.com',
     :enable_starttls_auto => true
   }
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
