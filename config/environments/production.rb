@@ -85,20 +85,36 @@ Rails.application.configure do
   # -- --
 
   # -- try SendGrid --
-  config.action_mailer.raise_delivery_errors = true
+  # config.action_mailer.raise_delivery_errors = true
+  # config.action_mailer.delivery_method = :smtp
+  # host = 'https://afternoon-plains-47666.herokuapp.com'
+  # config.action_mailer.default_url_options = { host: host }
+  # ActionMailer::Base.smtp_settings = {
+  #   address: 'smtp.sendgrid.net',
+  #   port: '587',
+  #   authentication: :plain,
+  #   user_name: 'apikey',
+  #   password: ENV['SENDGRID_API_KEY'],
+  #   domain: 'heroku.com',
+  #   enable_starttls_auto: true
+  # }
+  # -- try SendGrid --
+
+  # -- try gmail --
   config.action_mailer.delivery_method = :smtp
-  host = 'https://afternoon-plains-47666.herokuapp.com'
+  host = 'https://afternoon-plains-47666.herokuapp.com/'
   config.action_mailer.default_url_options = { host: host }
-  ActionMailer::Base.smtp_settings = {
-    address: 'smtp.sendgrid.net',
-    port: '587',
-    authentication: :plain,
-    user_name: 'apikey',
-    password: ENV['SENDGRID_API_KEY'],
-    domain: 'heroku.com',
+ 
+  # SMTP settings for gmail
+  config.action_mailer.smtp_settings = {
+    address:             "smtp.gmail.com",
+    port:                587,
+    user_name:           ENV['GOOGLE_EMAIL'],
+    password:            ENV['GOOGLE_PASSWORD'],
+    authentication:       "plain",
     enable_starttls_auto: true
   }
-  # -- try SendGrid --
+    # -- try gmail --
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
