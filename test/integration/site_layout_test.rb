@@ -5,7 +5,7 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
   #   assert true
   # end
   def setup
-    @base_title = 'Ruby on Rails Tutorial Sample App'
+    @base_title = 'Ruby on Rails Tutorial Coming About'
   end
 
   test 'layout links' do

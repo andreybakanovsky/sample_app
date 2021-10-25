@@ -36,7 +36,7 @@ class UsersController < ApplicationController
     # params[:user] на самом деле является хэшем атрибутов пользователя
     # is mostly equivalent to: @user = User.new(name: "Foo Bar", email: "foo@invalid", password: "foo", password_confirmation: "bar")
     if @user.save
-      @user.send_activation_email
+      @user.send_activation_email # +
       flash[:info] = 'Please check your email to activate your account.'
       redirect_to root_url
       # redirect_to @user # можно было так же redirect_to user_url(@user)
